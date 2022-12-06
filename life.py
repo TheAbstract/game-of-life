@@ -29,8 +29,8 @@ def next_cell(point, board):
     i, j = point
     width = len(board)
     height = len(board[0])
-    neighbors = 0
 
+    neighbors = 0
     for ith in range((i - 1), (i + 1) + 1):
         if ith < 0 or ith >= width:
             continue
@@ -55,6 +55,16 @@ def next_cell(point, board):
             else:
                 return DEAD
 
+def next_state(board):
+    width = len(board)
+    height = len(board[0])
+    state = dead_state(board)
+
+    for i in range(width):
+        for j in range(height):
+            state[i][j] = next_cell((i, j), board)
+
+    return state
 
 if __name__ == '__main__':
     pprint(dead_state())

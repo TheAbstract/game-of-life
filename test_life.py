@@ -30,7 +30,7 @@ class TestLife(unittest.TestCase):
             [0,1,1],
             [0,0,0]
         ]
-        
+
         self.assertEqual(next_state(initial_state), expected_state)
 
 if __name__ == '__main__':

@@ -1,15 +1,17 @@
 from random import randint, seed
 from pprint import pprint
 
-seed(208)
 
-def dead_state(width=3, height=3):
+seed(208)
+ALIVE, DEAD = 1, 0
+
+def dead_state(width=5, height=5):
     board = []
     for _ in range(width):
         board.append([0 for _ in range(height)])
     return board
 
-def random_state(width=3, height=3):
+def random_state(width=5, height=5):
     board = []
     for _ in range(width):
         board.append([randint(0, 1) for _ in range(height)])
@@ -35,30 +37,27 @@ def next_cell(point, board):
         if ith < 0 or ith >= width:
             continue
         for jth in range((j - 1), (j + 1) + 1):
-            if i == ith and j == jth:
-                continue
             if jth < 0 or jth >= height:
+                continue
+            if ith == i and jth == j:
                 continue
             if board[ith][jth] == ALIVE:
                 neighbors += 1
 
-        if board[ith][jth] == ALIVE:
-            if neighbors <= 1:
-                return DEAD
-            elif neighbors <= 3:
-                return ALIVE
-            else:
-                return DEAD
+    if board[i][j] == ALIVE:
+        if neighbors <= 1:
+            return DEAD
+        elif neighbors <= 3:
+            return ALIVE
         else:
-            if neighbors == 3:
-                return ALIVE
-            else:
-                return DEAD
+            return DEAD
+    else:
+        return ALIVE if neighbors == 3 else DEAD
 
 def next_state(board):
     width = len(board)
     height = len(board[0])
-    state = dead_state(board)
+    state = dead_state(width, height)
 
     for i in range(width):
         for j in range(height):
@@ -68,5 +67,6 @@ def next_state(board):
 
 if __name__ == '__main__':
     pprint(dead_state())
-    board = random_state(5, 5)
+    board = random_state()
     pprint(board)
+    pprint(next_state(board))

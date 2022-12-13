@@ -3,7 +3,6 @@ from pprint import pprint
 
 
 seed(208)
-ALIVE, DEAD = 1, 0
 
 def dead_state(width=5, height=5):
     board = []

@@ -17,12 +17,13 @@ def random_state(width=5, height=5):
         board.append([randint(0, 1) for _ in range(height)])
     return board
 
+
 def display(board):
     alive = '🙂 '
     dead = '💀 '
     for row in board:
         for cell in row:
-            print('* ' if cell == 1 else '. ', end='')
+            print('* ' if cell == 1 else '  ', end='')
             # print(alive if cell == 1 else dead, end='')
         print('\n')
 
@@ -66,7 +67,7 @@ def next_state(board):
     return state
 
 if __name__ == '__main__':
-    pprint(dead_state())
-    board = random_state()
-    pprint(board)
-    pprint(next_state(board))
+    state = random_state(100, 50)
+    while True:
+        display(state)
+        state = next_state(state)

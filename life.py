@@ -19,12 +19,9 @@ def random_state(width=5, height=5):
 
 
 def display(board):
-    alive = '🙂 '
-    dead = '💀 '
     for row in board:
         for cell in row:
             print('* ' if cell == 1 else '  ', end='')
-            # print(alive if cell == 1 else dead, end='')
         print('\n')
 
 def next_cell(point, board):
@@ -67,7 +64,7 @@ def next_state(board):
     return state
 
 if __name__ == '__main__':
-    state = random_state(100, 50)
+    state = random_state(80, 80)
     while True:
         display(state)
         state = next_state(state)

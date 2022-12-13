@@ -5,11 +5,16 @@ from pprint import pprint
 seed(208)
 ALIVE, DEAD = 1, 0
 
-def random_state(width=5, height=5, dead=False):
-    cell = 0 if dead else randint(0, 1)
+def dead_state(width=5, height=5):
     board = []
     for _ in range(width):
-        board.append([cell for _ in range(height)])
+        board.append([0 for _ in range(height)])
+    return board
+
+def random_state(width=5, height=5):
+    board = []
+    for _ in range(width):
+        board.append([randint(0, 1) for _ in range(height)])
     return board
 
 def display(board):
@@ -61,7 +66,7 @@ def next_state(board):
     return state
 
 if __name__ == '__main__':
-    pprint(random_state(dead=True))
+    pprint(dead_state())
     board = random_state()
     pprint(board)
     pprint(next_state(board))

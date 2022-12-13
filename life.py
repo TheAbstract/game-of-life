@@ -17,11 +17,10 @@ def random_state(width=5, height=5):
         board.append([randint(0, 1) for _ in range(height)])
     return board
 
-
 def display(board):
     for row in board:
         for cell in row:
-            print('* ' if cell == 1 else '  ', end='')
+            print('❄︎ ' if cell == 1 else '  ', end='')
         print('\n')
 
 def next_cell(point, board):
@@ -62,6 +61,7 @@ def next_state(board):
             state[i][j] = next_cell((i, j), board)
 
     return state
+
 
 if __name__ == '__main__':
     state = random_state(80, 80)
